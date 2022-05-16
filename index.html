@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form" action="">
+      <p><label for="title">Title:</label></p>
+      <input id="title" name="title" type="text" />
+
+      <p><label for="desc">Description:</label></p>
+      <input id="desc" type="text" />
+
+      <p><label for="due">Due:</label></p>
+      <input type="date" name="due" id="due" />
+
+      <p><label for="priority">Priority:</label></p>
+
+      <input type="radio" name="priority" id="priority" value="low" />
+      <label for="priority">Low</label>
+
+      <input type="radio" name="priority" id="priority2" value="med" />
+      <label for="priority2">Medium</label>
+
+      <input type="radio" name="priority" id="priority3" value="high" />
+      <label for="priority3">High</label>
+
+      <p><button id="submit-btn" type="submit">Submit</button></p>
+    </form>
+
+    <div class="todo">
+      <div class="title">Title</div>
+      <div class="desc">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque aliquid
+        ab nobis expedita fuga nulla recusandae nihil temporibus molestiae,
+        repellat dignissimos fugit reiciendis odio quas dolorem. Ab id dolore
+        ad.
+      </div>
+      <div class="todo-footer">
+        <div class="priority">Low</div>
+        <div class="due">Due: 2022-05-04</div>
+      </div>
+    </div>
+
+    <div class="sidebar"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
