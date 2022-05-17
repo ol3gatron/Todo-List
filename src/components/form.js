@@ -62,7 +62,7 @@ const form = function() {
   priorRadioTwo.setAttribute("id", "priorityMed")
   priorRadioTwo.setAttribute("name", "priority")
   priorRadioTwo.setAttribute("type", "radio")
-  priorRadioTwo.setAttribute("value", "med")
+  priorRadioTwo.setAttribute("value", "medium")
   const priorRadioTwoLabel = document.createElement("label")
   priorRadioTwoLabel.setAttribute("for", "priorityMed")
   priorRadioTwoLabel.textContent = "Medium"

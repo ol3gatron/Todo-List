@@ -49,6 +49,7 @@ input[type="radio"] + label {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 3px;
+  cursor: pointer;
 }
 
 #submitBtn:hover {
@@ -91,6 +92,7 @@ input[type="radio"] + label {
   flex-direction: column;
   padding: 20px;
   align-items: center;
+  position: fixed;
 }
 
 .addCategory {
@@ -98,9 +100,17 @@ input[type="radio"] + label {
   background-color: #161616;
   border: none;
   padding: 10px 15px;
-  border-radius: 30px;
-  font-size: 18px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.addCategory:hover {
+  background-color: #fff;
+  color: #161616;
 }
 
 .sidebar-title {
