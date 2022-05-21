@@ -85,6 +85,7 @@ const form = function() {
   const p5 = document.createElement("p")
   const submitBtn = document.createElement("button")
   submitBtn.textContent = "Submit"
+  submitBtn.className = "submitBtn"
   submitBtn.setAttribute("id", "submitBtn")
   submitBtn.setAttribute("type", "submit")
   p5.appendChild(submitBtn)
