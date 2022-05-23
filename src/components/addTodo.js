@@ -1,7 +1,7 @@
 const addTodo = function() {
-  const addTodo = document.createElement("div")
+  const addTodo = document.createElement("button")
   addTodo.className = "addTodo"
-  // addTodo.textContent = "+"
+  addTodo.textContent = "+"
 
   return addTodo
 }
