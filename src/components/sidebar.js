@@ -25,12 +25,12 @@ const sidebar = function() {
   todayCategories.appendChild(todayCategoriesP)
   sidebarList.appendChild(todayCategories)
 
-  const tommorowCategories = document.createElement("li")
-  const tommorowCategoriesP = document.createElement("p")
-  tommorowCategoriesP.className = "tommorowCategoriesP"
-  tommorowCategoriesP.textContent = "Tommorow"
-  tommorowCategories.appendChild(tommorowCategoriesP)
-  sidebarList.appendChild(tommorowCategories)
+  const weekCategories = document.createElement("li")
+  const weekCategoriesP = document.createElement("p")
+  weekCategoriesP.className = "weekCategoriesP"
+  weekCategoriesP.textContent = "This Week"
+  weekCategories.appendChild(weekCategoriesP)
+  sidebarList.appendChild(weekCategories)
 
   const addCategoryButton = document.createElement("button")
   addCategoryButton.className = "addCategory"

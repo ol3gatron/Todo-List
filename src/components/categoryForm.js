@@ -12,7 +12,7 @@ const categoryForm = function() {
   title.setAttribute("id", "title")
   title.setAttribute("name", "title")
   title.setAttribute("type", "text")
-  title.setAttribute("maxlength", 8)
+  title.setAttribute("maxlength", 15)
   form.appendChild(p1)
   form.appendChild(title)
 

@@ -1,3 +1,17 @@
+function SidebarStore() {}
+
+SidebarStore.prototype.getCategorys = function() {
+  let categorys
+    if(localStorage.getItem("categorys") === null) {
+      categorys = []
+    } else {
+      categorys = JSON.parse(localStorage.getItem("categorys"))
+    }
+
+    console.log("Get categorys: " + JSON.stringify(categorys))
+    return categorys
+}
+
 const form = function() {
   const form = document.createElement("form")
   form.setAttribute("id", "form")
@@ -37,6 +51,27 @@ const form = function() {
   due.setAttribute("type", "date")
   form.appendChild(p3)
   form.appendChild(due)
+
+  const selectP = document.createElement("p")
+  selectP.textContent = "Category: "
+  const select = document.createElement("select")
+  const selectDis = document.createElement("option")
+  selectDis.setAttribute("selected", " ")
+  selectDis.setAttribute("disabled", " ")
+  selectDis.textContent = "Choose category"
+  select.appendChild(selectDis)
+  const store = new SidebarStore
+  const categorys = store.getCategorys()
+  categorys.forEach(function(category, index) {
+    const option = document.createElement("option")
+    option.textContent = category.title
+    option.setAttribute("value", category.title)
+    select.appendChild(option)
+  })
+
+
+  form.appendChild(selectP)
+  form.appendChild(select)
 
   const p4 = document.createElement("p")
   const priorLabel = document.createElement("label")
