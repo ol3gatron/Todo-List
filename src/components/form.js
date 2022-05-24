@@ -86,7 +86,7 @@ const form = function() {
   priorRadioOne.setAttribute("id", "priority")
   priorRadioOne.setAttribute("name", "priority")
   priorRadioOne.setAttribute("type", "radio")
-  priorRadioOne.setAttribute("value", "low")
+  priorRadioOne.setAttribute("value", "Low")
   const priorRadioOneLabel = document.createElement("label")
   priorRadioOneLabel.setAttribute("for", "priority")
   priorRadioOneLabel.textContent = "Low"
@@ -97,7 +97,7 @@ const form = function() {
   priorRadioTwo.setAttribute("id", "priorityMed")
   priorRadioTwo.setAttribute("name", "priority")
   priorRadioTwo.setAttribute("type", "radio")
-  priorRadioTwo.setAttribute("value", "medium")
+  priorRadioTwo.setAttribute("value", "Medium")
   const priorRadioTwoLabel = document.createElement("label")
   priorRadioTwoLabel.setAttribute("for", "priorityMed")
   priorRadioTwoLabel.textContent = "Medium"
@@ -108,7 +108,7 @@ const form = function() {
   priorRadioThree.setAttribute("id", "priorityHigh")
   priorRadioThree.setAttribute("name", "priority")
   priorRadioThree.setAttribute("type", "radio")
-  priorRadioThree.setAttribute("value", "high")
+  priorRadioThree.setAttribute("value", "High")
   const priorRadioThreeLabel = document.createElement("label")
   priorRadioThreeLabel.setAttribute("for", "priorityHigh")
   priorRadioThreeLabel.textContent = "High"

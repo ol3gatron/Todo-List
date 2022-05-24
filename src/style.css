@@ -119,6 +119,11 @@ input[type="radio"] + label {
   font-size: 12px;
 }
 
+.todoCategory {
+  color: #161616;
+  font-size: 12px;
+}
+
 .sidebar {
   height: 100%;
   min-width: 300px;

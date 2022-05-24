@@ -47,6 +47,11 @@ TODO.prototype.addTodoToList = function(todo) {
 
   todoItem.appendChild(footer)
 
+  const category = document.createElement("div")
+  category.textContent = `Category: ${todo.category}`
+  category.className = "todoCategory"
+  todoItem.appendChild(category)
+
   document.querySelector(".main").appendChild(todoItem)
 }
 
@@ -127,8 +132,8 @@ document.body.appendChild(main)
 
 main.appendChild(addTodo())
 
-const todoFactory = function(title, desc, due, priority, index) {
-  return {title, desc, due, priority, index}
+const todoFactory = function(title, desc, due, priority, index, category) {
+  return {title, desc, due, priority, index, category}
 }
 
 main.addEventListener("click", (e) => {
@@ -175,10 +180,12 @@ document.body.addEventListener("click", (e) => {
     const desc = document.querySelector("#desc").value
     const due = document.querySelector("#due").value
     const priority = document.querySelector("input[name='priority']:checked").value
+    const category = document.querySelector("select").value
 
     let index = getIndex()
 
-    const todoItem = todoFactory(title, desc, due, priority, index)
+    const todoItem = todoFactory(title, desc, due, priority, index, category)
+    console.log(todoItem)
 
     todo.addTodoToList(todoItem)
     store.addTodo(todoItem)
