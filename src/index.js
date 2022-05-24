@@ -2,6 +2,7 @@ import css from "./style.css"
 import form from "./components/form.js"
 import sidebar from "./components/sidebar.js"
 import addTodo from "./components/addTodo"
+import categoryForm from "./components/categoryForm"
 
 function TODO() {}
 
@@ -191,5 +192,137 @@ document.body.addEventListener("click", (e) => {
 
     e.preventDefault()
     })
+  }
+})
+
+function Sidebar() {}
+
+Sidebar.prototype.addCategory = function(category) {
+  const sidebarList = document.querySelector(".sidebarList")
+  const sidebarLi = document.createElement("li")
+  const closeBtn = document.createElement("button")
+
+  const sidebarP = document.createElement("p")
+  sidebarP.textContent = category.title
+  sidebarLi.appendChild(sidebarP)
+
+
+
+  closeBtn.className = "closeSideBtn"
+  closeBtn.textContent = "X"
+  sidebarLi.setAttribute("index", category.index)
+  sidebarLi.appendChild(closeBtn)
+  sidebarList.appendChild(sidebarLi)
+}
+
+Sidebar.prototype.removeCategory = function(category) {
+  category.remove()
+  console.log(category)
+}
+
+function SidebarStore() {}
+
+SidebarStore.prototype.getCategorys = function() {
+  let categorys
+    if(localStorage.getItem("categorys") === null) {
+      categorys = []
+    } else {
+      categorys = JSON.parse(localStorage.getItem("categorys"))
+    }
+
+    console.log("Get categorys: " + JSON.stringify(categorys))
+    return categorys
+}
+
+SidebarStore.prototype.displayCategorys = function() {
+  const store = new SidebarStore
+  const categorys = store.getCategorys()
+  console.log("Display categorys: " + JSON.stringify(categorys))
+
+  categorys.forEach(function(category) {
+    const sidebarUI = new Sidebar
+    sidebarUI.addCategory(category)
+  })
+}
+
+SidebarStore.prototype.addCategory = function(category) {
+  const sidebarStore = new SidebarStore
+  const categorys = sidebarStore.getCategorys()
+
+  categorys.push(category)
+
+  localStorage.setItem("categorys", JSON.stringify(categorys))
+}
+
+SidebarStore.prototype.removeCategory = function(sideindex) {
+  const sidebarStore = new SidebarStore
+  const categorys = sidebarStore.getCategorys()
+
+  categorys.forEach(function(category, index) {
+    if (category.index == sideindex) {
+      categorys.splice(index, 1)
+    }
+  })
+
+  localStorage.setItem("categorys", JSON.stringify(categorys))
+}
+
+function getSideIndex() {
+  const sidebarStore = new SidebarStore
+  const categorys = sidebarStore.getCategorys()
+
+  let sideIndex
+
+  if (categorys.length == 0) {
+    sideIndex = 0
+  } else {
+    sideIndex = categorys[categorys.length - 1].index + 1
+  }
+
+  return sideIndex
+}
+
+const sidebarStore = new SidebarStore
+document.addEventListener("DOMContentLoaded", sidebarStore.displayCategorys)
+
+const categoryFactory = function(title, index) {
+  return {title, index}
+}
+
+const sidebarDiv = document.querySelector(".sidebar")
+sidebarDiv.addEventListener("click", (e) => {
+  if (e.target.className === "addCategory") {
+    const wrapper = document.createElement("div")
+    wrapper.className = "wrapper"
+    document.body.appendChild(wrapper)
+    wrapper.appendChild(categoryForm())
+  }
+
+  const categoryFormDiv = document.querySelector(".categoryForm")
+  const sidebarUI = new Sidebar
+  const sidebarStore = new SidebarStore
+
+  let index = getSideIndex()
+
+  categoryFormDiv.addEventListener("submit", (e) => {
+    const title = document.querySelector("#title").value
+    let categoryTitle = categoryFactory(title, index)
+    sidebarUI.addCategory(categoryTitle)
+    sidebarStore.addCategory(categoryTitle)
+
+    e.preventDefault()
+
+    categoryFormDiv.parentElement.remove()
+    categoryFormDiv.remove()
+  })
+})
+
+sidebarDiv.addEventListener("click", (e) => {
+  const sidebarUI = new Sidebar
+  const sidebarStore = new SidebarStore
+
+  if (e.target.className === "closeSideBtn") {
+    sidebarUI.removeCategory(e.target.parentElement)
+    sidebarStore.removeCategory(e.target.parentElement.attributes.index.value)
   }
 })

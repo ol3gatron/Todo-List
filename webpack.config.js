@@ -16,6 +16,7 @@ module.exports = {
     form: "./src/components/form.js",
     sidebar: "./src/components/sidebar.js",
     addTodo: "./src/components/addTodo.js",
+    categoryForm: "./src/components/categoryForm.js",
   },
   output: {
     filename: '[name].bundle.js',

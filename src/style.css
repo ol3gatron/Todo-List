@@ -29,7 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  margin: 30px;
+  margin: 10px;
 }
 
 #form > input {
@@ -48,7 +48,7 @@ input[type="radio"] + label {
   margin: 0 10px;
 }
 
-#submitBtn {
+.submitBtn {
   color: #fff;
   background-color: #161616;
   border: none;
@@ -59,9 +59,10 @@ input[type="radio"] + label {
   text-transform: uppercase;
   letter-spacing: 3px;
   cursor: pointer;
+  margin-top: 5px;
 }
 
-#submitBtn:hover {
+.submitBtn:hover {
   color: #161616;
   background-color: #fff;
 }
@@ -101,6 +102,15 @@ input[type="radio"] + label {
   border-radius: 5px;
 }
 
+.closeSideBtn {
+  height: 25px;
+  width: 25px;
+  background-color: #161616;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+}
+
 .todo > .todo-footer {
   display: flex;
   justify-content: space-between;
@@ -132,6 +142,7 @@ input[type="radio"] + label {
   letter-spacing: 3px;
   text-transform: uppercase;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .addCategory:hover {
@@ -167,8 +178,36 @@ input[type="radio"] + label {
   height: 100%;
   background-color: rgba(128, 83, 83, 0.5);
   z-index: 999;
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+ul {
+  list-style: none;
+  width: 100%;
+}
+
+ul > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+
+ul > li > p{
+  color: #ffffff;
+  background-color: #161616;
+  padding: 5px 20px;
+  width: 100%;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 14px;
+  margin: 0px 5px 0 0;
+  text-transform: capitalize;
+}
+
+.allCategoriesP, .todayCategoriesP, .tommorowCategoriesP {
+  margin: 0;
 }
