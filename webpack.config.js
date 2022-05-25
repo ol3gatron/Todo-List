@@ -9,6 +9,14 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.png$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.svg$/,
+        use: 'file-loader'
+      },
     ],
   },
   entry: {
@@ -17,6 +25,7 @@ module.exports = {
     sidebar: "./src/components/sidebar.js",
     addTodo: "./src/components/addTodo.js",
     categoryForm: "./src/components/categoryForm.js",
+    mobileSidebar: "./src/components/mobileSidebar.js",
   },
   output: {
     filename: '[name].bundle.js',

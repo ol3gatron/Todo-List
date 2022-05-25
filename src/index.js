@@ -4,6 +4,7 @@ import sidebar from "./components/sidebar.js"
 import addTodo from "./components/addTodo"
 import categoryForm from "./components/categoryForm"
 import moment from "moment"
+import mobileSidebar from "./components/mobileSidebar"
 
 function TODO() {}
 
@@ -137,6 +138,7 @@ const main = document.createElement("div")
 main.className = "main"
 document.body.appendChild(sidebar())
 document.body.appendChild(main)
+document.body.appendChild(mobileSidebar())
 
 main.appendChild(addTodo())
 
@@ -437,4 +439,14 @@ sidebarDiv.addEventListener("click", (e) => {
     console.log(arrar)
     console.log(thisWeekDatesFormated)
   }
+})
+
+const menuBtn = document.querySelector(".sidebar-img")
+menuBtn.addEventListener("click", (e) => {
+  const sidebar = document.querySelector(".sidebar")
+  sidebar.style.position = "fixed"
+  sidebar.style.left = "auto"
+  sidebar.style.top = "auto"
+  sidebar.style.zIndex = "10"
+  sidebar.style.width = "100%"
 })
