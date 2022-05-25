@@ -3,6 +3,7 @@ import form from "./components/form.js"
 import sidebar from "./components/sidebar.js"
 import addTodo from "./components/addTodo"
 import categoryForm from "./components/categoryForm"
+import moment from "moment"
 
 function TODO() {}
 
@@ -93,6 +94,13 @@ Store.prototype.displayTodos = function() {
   const todos = store.getTodos()
 
   todos.forEach(function(todo) {
+    const ui = new TODO
+    ui.addTodoToList(todo)
+  })
+}
+
+Store.prototype.displayFilteredTodos = function(filteredArr) {
+  filteredArr.forEach(function(todo) {
     const ui = new TODO
     ui.addTodoToList(todo)
   })
@@ -211,6 +219,7 @@ Sidebar.prototype.addCategory = function(category) {
 
   const sidebarP = document.createElement("p")
   sidebarP.textContent = category.title
+  sidebarP.className = "sidebar-category"
   sidebarLi.appendChild(sidebarP)
 
 
@@ -237,14 +246,12 @@ SidebarStore.prototype.getCategorys = function() {
       categorys = JSON.parse(localStorage.getItem("categorys"))
     }
 
-    console.log("Get categorys: " + JSON.stringify(categorys))
     return categorys
 }
 
 SidebarStore.prototype.displayCategorys = function() {
   const store = new SidebarStore
   const categorys = store.getCategorys()
-  console.log("Display categorys: " + JSON.stringify(categorys))
 
   categorys.forEach(function(category) {
     const sidebarUI = new Sidebar
@@ -331,5 +338,103 @@ sidebarDiv.addEventListener("click", (e) => {
   if (e.target.className === "closeSideBtn") {
     sidebarUI.removeCategory(e.target.parentElement)
     sidebarStore.removeCategory(e.target.parentElement.attributes.index.value)
+  }
+})
+
+const filter = function(filterKey, filterWord) {
+  const store = new Store
+  const todos = store.getTodos()
+
+  const filtered = todos.filter(todo => todo[filterKey] === filterWord)
+  return filtered
+}
+
+sidebarDiv.addEventListener("click", (e) => {
+  if (e.target.className === "sidebar-category") {
+    const filtered = filter("category", e.target.textContent)
+    console.log(filtered)
+
+    const allTodos = document.querySelectorAll(".todo")
+    allTodos.forEach(function(todo) {
+      todo.remove()
+    })
+
+    const store = new Store
+    store.displayFilteredTodos(filtered)
+  }
+})
+
+sidebarDiv.addEventListener("click", (e) => {
+  const store = new Store
+
+  if (e.target.className === "allCategoriesP") {
+    const allTodos = document.querySelectorAll(".todo")
+    allTodos.forEach(function(todo) {
+      todo.remove()
+    })
+
+    store.displayTodos()
+  }
+})
+
+sidebarDiv.addEventListener("click", (e) => {
+  if (e.target.className === "todayCategoriesP") {
+    const today = new Date();
+    const todaysDate = today.getFullYear()+"-"+"0"+(today.getMonth()+1)+"-"+today.getDate();
+    console.log(todaysDate)
+
+    const filtered = filter("due", todaysDate)
+    const allTodos = document.querySelectorAll(".todo")
+    allTodos.forEach(function(todo) {
+      todo.remove()
+    })
+
+    const store = new Store
+    store.displayFilteredTodos(filtered)
+  }
+})
+
+function getThisWeekDates() {
+  const weekDates= [];
+
+  for (let i = 1; i <= 7; i++) {
+    weekDates.push(moment().day(i));
+  }
+
+  return weekDates;
+}
+
+
+sidebarDiv.addEventListener("click", (e) => {
+  const store = new Store
+  const todos = store.getTodos()
+  const thisWeekDates = getThisWeekDates()
+  const thisWeekDatesFormated = []
+  const arrar = []
+
+
+  if (e.target.className === "weekCategoriesP") {
+    thisWeekDates.forEach(function(date) {
+      thisWeekDatesFormated.push(date.format("YYYY-MM-DD"))
+    })
+
+    todos.forEach(function(todo) {
+      for (let i = 0; thisWeekDatesFormated.length > i; i++) {
+        if (todo.due === thisWeekDatesFormated[i]) {
+          arrar.push(todo)
+        }
+      }
+    })
+
+    const allTodos = document.querySelectorAll(".todo")
+    allTodos.forEach(function(todo) {
+      todo.remove()
+    })
+
+    store.displayFilteredTodos(arrar)
+
+
+    console.log(arrar)
+    console.log(thisWeekDatesFormated)
   }
 })
