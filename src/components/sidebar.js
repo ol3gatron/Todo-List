@@ -2,6 +2,11 @@ const sidebar = function() {
   const sidebar = document.createElement("div")
   sidebar.className = "sidebar"
 
+  const closeSidebarBtn = document.createElement("button")
+  closeSidebarBtn.classList = "closeSidebarBtn"
+  closeSidebarBtn.textContent = "✖"
+  sidebar.appendChild(closeSidebarBtn)
+
   const sidebarTitle = document.createElement("h1")
   sidebarTitle.className = "sidebar-title"
   sidebarTitle.textContent = "TODO'S LIST"

@@ -5,7 +5,7 @@ const categoryForm = function() {
 
   const closeBtn = document.createElement("button")
   closeBtn.className = "closeBtnForm"
-  closeBtn.textContent = "X"
+  closeBtn.textContent = "✖"
   closeBtn.setAttribute("type", "button")
 
   const closeBtnDiv = document.createElement("div")

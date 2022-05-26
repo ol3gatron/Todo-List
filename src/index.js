@@ -28,7 +28,7 @@ TODO.prototype.addTodoToList = function(todo) {
 
   const closeBtn = document.createElement("button")
   closeBtn.className = "closeBtn"
-  closeBtn.textContent = "X"
+  closeBtn.textContent = "✖"
   title.appendChild(closeBtn)
 
   const desc = document.createElement("div")
@@ -50,7 +50,11 @@ TODO.prototype.addTodoToList = function(todo) {
   todoItem.appendChild(footer)
 
   const category = document.createElement("div")
-  category.textContent = `Category: ${todo.category}`
+  if (todo.category === "Choose category") {
+    category.textContent = `No category`
+  } else {
+    category.textContent = `Category: ${todo.category}`
+  }
   category.className = "todoCategory"
   todoItem.appendChild(category)
 
@@ -232,7 +236,7 @@ Sidebar.prototype.addCategory = function(category) {
 
 
   closeBtn.className = "closeSideBtn"
-  closeBtn.textContent = "X"
+  closeBtn.textContent = "✖"
   sidebarLi.setAttribute("index", category.index)
   sidebarLi.appendChild(closeBtn)
   sidebarList.appendChild(sidebarLi)
@@ -361,10 +365,16 @@ const filter = function(filterKey, filterWord) {
   return filtered
 }
 
+const closeSidebar = function() {
+  const sidebar = document.querySelector(".sidebar")
+  sidebar.style.position = "absolute"
+  sidebar.style.left = "-9999px"
+  sidebar.style.top = "-9999px"
+}
+
 sidebarDiv.addEventListener("click", (e) => {
   if (e.target.className === "sidebar-category") {
     const filtered = filter("category", e.target.textContent)
-    console.log(filtered)
 
     const allTodos = document.querySelectorAll(".todo")
     allTodos.forEach(function(todo) {
@@ -373,6 +383,10 @@ sidebarDiv.addEventListener("click", (e) => {
 
     const store = new Store
     store.displayFilteredTodos(filtered)
+
+    if (window.innerWidth < 630) {
+      closeSidebar()
+    }
   }
 })
 
@@ -386,6 +400,9 @@ sidebarDiv.addEventListener("click", (e) => {
     })
 
     store.displayTodos()
+    if (window.innerWidth < 630) {
+      closeSidebar()
+    }
   }
 })
 
@@ -403,6 +420,9 @@ sidebarDiv.addEventListener("click", (e) => {
 
     const store = new Store
     store.displayFilteredTodos(filtered)
+    if (window.innerWidth < 630) {
+      closeSidebar()
+    }
   }
 })
 
@@ -448,6 +468,9 @@ sidebarDiv.addEventListener("click", (e) => {
 
     console.log(arrar)
     console.log(thisWeekDatesFormated)
+    if (window.innerWidth < 630) {
+      closeSidebar()
+    }
   }
 })
 
@@ -459,4 +482,11 @@ menuBtn.addEventListener("click", (e) => {
   sidebar.style.top = "auto"
   sidebar.style.zIndex = "10"
   sidebar.style.width = "100%"
+})
+
+sidebarDiv.addEventListener("click", (e) => {
+  if (e.target.className === "closeSidebarBtn") {
+    e.target.parentElement.style.left = "-9999px"
+    e.target.parentElement.style.top = "-9999px"
+  }
 })
