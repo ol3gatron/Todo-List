@@ -16,6 +16,16 @@ const form = function() {
   const form = document.createElement("form")
   form.setAttribute("id", "form")
 
+  const closeBtn = document.createElement("button")
+  closeBtn.className = "closeBtnForm"
+  closeBtn.textContent = "X"
+  closeBtn.setAttribute("type", "button")
+
+  const closeBtnDiv = document.createElement("div")
+  closeBtnDiv.className = "closeBtnDiv"
+  closeBtnDiv.appendChild(closeBtn)
+  form.appendChild(closeBtnDiv)
+
   const p1 = document.createElement("p")
   const titleLabel = document.createElement("label")
   titleLabel.setAttribute("for", "title")
@@ -25,6 +35,7 @@ const form = function() {
   title.setAttribute("id", "title")
   title.setAttribute("name", "title")
   title.setAttribute("type", "text")
+  title.setAttribute("required", " ")
   form.appendChild(p1)
   form.appendChild(title)
 
@@ -37,6 +48,7 @@ const form = function() {
   desc.setAttribute("id", "desc")
   desc.setAttribute("name", "desc")
   desc.setAttribute("type", "text")
+  desc.setAttribute("required", " ")
   form.appendChild(p2)
   form.appendChild(desc)
 
@@ -49,6 +61,7 @@ const form = function() {
   due.setAttribute("id", "due")
   due.setAttribute("name", "due")
   due.setAttribute("type", "date")
+  due.setAttribute("required", " ")
   form.appendChild(p3)
   form.appendChild(due)
 
@@ -87,6 +100,7 @@ const form = function() {
   priorRadioOne.setAttribute("name", "priority")
   priorRadioOne.setAttribute("type", "radio")
   priorRadioOne.setAttribute("value", "Low")
+  priorRadioOne.setAttribute("required", " ")
   const priorRadioOneLabel = document.createElement("label")
   priorRadioOneLabel.setAttribute("for", "priority")
   priorRadioOneLabel.textContent = "Low"

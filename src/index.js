@@ -180,6 +180,11 @@ document.body.addEventListener("click", (e) => {
 
     const formDiv = document.querySelector("#form")
 
+    const closeFormBtn = document.querySelector(".closeBtnForm")
+    closeFormBtn.addEventListener("click", (e) => {
+      e.target.parentElement.parentElement.parentElement.remove()
+    })
+
     formDiv.addEventListener("submit", function(e) {
     const todo = new TODO
     const store = new Store
@@ -313,6 +318,11 @@ sidebarDiv.addEventListener("click", (e) => {
     document.body.appendChild(wrapper)
     wrapper.appendChild(categoryForm())
   }
+
+  const closeFormBtn = document.querySelector(".closeBtnForm")
+    closeFormBtn.addEventListener("click", (e) => {
+      e.target.parentElement.parentElement.parentElement.remove()
+  })
 
   const categoryFormDiv = document.querySelector(".categoryForm")
   const sidebarUI = new Sidebar
